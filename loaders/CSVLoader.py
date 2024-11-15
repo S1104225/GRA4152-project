@@ -21,7 +21,7 @@ class CSVLoader:
         self._y_names = np.array(y_names)
 
         # Loads the data inside a specific subclass
-        self.load()
+        self._load()
 
     ## Returns the matrix of exogenous variables
     #  @return matrix of Xs
@@ -77,9 +77,9 @@ class CSVLoader:
         self.x = np.concatenate((const_vector, self.x))
 
 
-    ## The abstract method to load csv files 
+    ## The abstract method to _load csv files 
     #
-    def load(self):
+    def _load(self):
         # Checks that variables with names from x_names and y_name are actually inside the dataset
         assert np.all(np.isin(self._x_names, self._df.keys())), 'Wrong x_names provided'
         assert np.all(np.isin(self._y_names, self._df.keys())), 'Wrong y_names provided'

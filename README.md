@@ -1,3 +1,18 @@
 # GRA4152 Midterm Project
 
 This repository contains two main superclasses: CSVLoader & GLMBase.
+
+### CSVLoader
+
+- There are 3 subclasses of this class that utilize the notion of polymorphism: CSVReader (to read from disk), CSVScraper (to read from the Internet), CSVStatsLoader (to use in-built datasets from statsmodels package)
+- One can initialise them in the following way:
+
+CSVLoader([names of x variables], [names of y variables], 'names of the dataset')
+
+- After that is loads the dataset automatically with the following shape: [p, N]
+- Afterwards it is possible to access x, y, x_transpose, y_transpose
+- There are also 2 methods:
+    * .add_constant() - add a row of 1s to the dataset
+    * .test_train_split(test_size, random_state) - splits data into training and testing parts
+
+### GLMBAse

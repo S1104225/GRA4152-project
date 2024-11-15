@@ -17,7 +17,7 @@ class CSVStatsLoader(CSVLoader):
 
     ## Overrides the superclass method and loads a sm's in-built dataset using the name provided in constructor
     #
-    def load(self):
+    def _load(self):
         try:
             if (self._name == 'duncan'): self._df = sm.datasets.get_rdataset('Duncan', 'carData').data
             elif (self._name == 'spector'): self._df = sm.datasets.spector.load_pandas().data
@@ -25,4 +25,4 @@ class CSVStatsLoader(CSVLoader):
         except Exception as e:
             raise Exception(f'Failed to read the CSV file due to the following error: {e}')
         else:
-            super().load()
+            super()._load()

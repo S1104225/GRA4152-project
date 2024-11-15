@@ -16,10 +16,10 @@ class CSVScraper(CSVLoader):
 
     ## Overrides the superclass method and downloades a CSV using the url provided to constructor
     #
-    def load(self):
+    def _load(self):
         try:
             self._df = pd.read_csv(self._url)
         except Exception as e:
             raise Exception(f'Failed to download a CSV file due to the following error: {e}')
         else:
-            super().load()
+            super()._load()

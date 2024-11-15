@@ -18,10 +18,10 @@ class CSVReader(CSVLoader):
 
     ## Overrides the superclass method and reads the CSV file using the folder and filenames
     #
-    def load(self):
+    def _load(self):
         try:
             self._df = pd.read_csv(f'{CSVReader._foldername}/{self._filename}')
         except Exception as e:
             raise Exception(f'Failed to read the CSV file due to the following error: {e}')
         else:
-            super().load()
+            super()._load()
