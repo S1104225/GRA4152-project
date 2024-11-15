@@ -33,3 +33,10 @@ It is possible to test the program by using a test file. See details by typing f
 - There are also 2 methods:
     * .summary() - provides a summary of a model
     * .predict([new x values]) - predict new Ys based on estimated parameters
+
+### Requirements
+- numpy
+- pandas
+- statsmodels
+- sklearn
+- argparse
