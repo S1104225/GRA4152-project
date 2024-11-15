@@ -38,5 +38,5 @@ It is possible to test the program by using a test file. See details by typing f
 - numpy
 - pandas
 - statsmodels
-- sklearn
+- scikit-learn
 - argparse
