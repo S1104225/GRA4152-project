@@ -1,8 +1,14 @@
-# GRA4152 Midterm Project
+# GRA4152 Final Project
 
 This repository contains two main superclasses: CSVLoader & GLMBase.
 
-### CSVLoader
+### Test File
+
+It is possible to test the program by using a test file. See details by typing following code in the console:
+
+```python3 testing_glm.py -h```
+
+### CSVLoader superclass
 
 - There are 3 subclasses of this class that utilize the notion of polymorphism: CSVReader (to read from disk), CSVScraper (to read from the Internet), CSVStatsLoader (to use in-built datasets from statsmodels package)
 - One can initialise them in the following way:
@@ -15,7 +21,7 @@ This repository contains two main superclasses: CSVLoader & GLMBase.
     * .add_constant() - add a row of 1s to the dataset
     * .test_train_split(test_size, random_state) - splits data into training and testing parts
 
-### GLMBAse
+### GLMBase superclass
 
 - There are 3 subclass built on the notion of polymorphism: GLMNormal, GLMBernoulli, GLMPoisson.
 - They are constructed like that:
@@ -27,9 +33,3 @@ This repository contains two main superclasses: CSVLoader & GLMBase.
 - There are also 2 methods:
     * .summary() - provides a summary of a model
     * .predict([new x values]) - predict new Ys based on estimated parameters
-
-### Test File
-
-It is also possible to test the program by using test file. See details by typing following code in the console:
-
-```python3 testing_glm.py -h```
