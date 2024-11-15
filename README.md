@@ -28,7 +28,7 @@ It is possible to test the program by using a test file. See details by typing f
 
 **CSVLoader([x variables], [y variables], boolean identifying if an intercept is used)**
 
-- It is recommended to .fit() it before accessing other methods
+- It is obligatory to .fit() the model before accessing other methods and properties
 - After that parameters can be accessed as a property .params
 - There are also 2 methods:
     * .summary() - provides a summary of a model
