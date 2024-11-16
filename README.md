@@ -4,7 +4,7 @@ This repository contains two main superclasses: CSVLoader & GLMBase.
 
 ### Test File
 
-It is possible to test the program by using a test file. See details by typing following code in the console:
+The program can be tested using testing_glm.py file. For further instruction type the following command in the console:
 
 ```python3 testing_glm.py -h```
 
