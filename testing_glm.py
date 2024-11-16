@@ -30,8 +30,8 @@ parser.add_argument('-m', '--model', default='normal', choices=[ 'normal', 'bern
 parser.add_argument('-p', '--predictors', default=[ 'x1' ], nargs='+', help='specify between 1 and 3 predictor variables (e.g. -p x1 x3)')
 parser.add_argument('-ts', '--test-size', type=float, default=0.3, help='set a fraction of the dataset between 0 and 1 that will be used for testing')
 parser.add_argument('-rs', '--random-state', type=int, default=0, help='set a random state between 0 and 1000 for a train-test split')
-parser.add_argument('-ai', '--add-intercept', action='store_true', help='specify whether to include intercept in the model estimation')
-parser.add_argument('-ss', '--print-summary', action='store_true', help='specify whether to print model summaries or not')
+parser.add_argument('-ai', '--add-intercept', action='store_true', help='specify whether to include an intercept in the model estimation')
+parser.add_argument('-ps', '--print-summary', action='store_true', help='indicate whether to print model summaries or not')
 
 args = parser.parse_args()
 
@@ -49,13 +49,13 @@ if (max(args.predictors) >= len(dataset['x_names']) or min(args.predictors) < 0 
 
 x_names = np.array(dataset['x_names'])[args.predictors]
 
-# A great example of polymorphism since I do not know the exact type of CSVLoader but I still can use it
+# A great example of polymorphism since I do not know the exact type of CSVLoader but still I can use it
 loader = dataset['loader'](x_names, dataset['y_names'], dataset['name'])
 if (args.add_intercept): loader.add_constant()
 
 x_train, x_test, y_train, y_test = loader.test_train_split(args.test_size, args.random_state)
 
-# Another example of polymorphism since I do not know the exact type of GLModel but I still can use it
+# Another example of polymorphism since I do not know the exact type of GLModel but still I can use it
 model = model_map[args.model]
 glm = model['model'](x_train, y_train, args.add_intercept)
 glm.fit()
@@ -77,6 +77,8 @@ moe = 1e-5
 # a comparison table. 
 params_comparison = "\n".join([f'x{i + int(not args.add_intercept)}: {glm:>12.6f} | {sm_glm:>12.6f}' for i, (glm, sm_glm) in enumerate(zip(glm.params, res.params))])
 params_summary = f'''
+{"Model: " + args.model:>16} | Dset: {args.dset:<11}
+-------------------------------
        My GLM    |    sm.GLM   
 -------------------------------
 {params_comparison}
@@ -89,6 +91,8 @@ print(params_summary)
 
 mus_comparison = "\n".join([f'{i + 1:>2}: {glm:>12.6f} | {sm_glm:>12.6f}' for i, (glm, sm_glm) in enumerate(zip(glm_pred, sm_glm_pred))])
 mus_summary = f'''
+{"Model: " + args.model:>16} | Dset: {args.dset:<11}
+-------------------------------
        My GLM    |    sm.GLM   
 -------------------------------
 {mus_comparison}
